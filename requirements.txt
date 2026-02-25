@@ -1,0 +1,4 @@
+requests
+PyJWT
+blackboxprotobuf
+qrcode
