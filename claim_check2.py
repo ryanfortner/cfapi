@@ -167,8 +167,9 @@ def rewards_to_list(cleaned_data):
             "date_label": date_label,
             "date_str": date_str
         }
-
-        rewards_list.append(reward_entry)
+        
+        if status == 1:
+            rewards_list.append(reward_entry)
 
     
     return rewards_list
