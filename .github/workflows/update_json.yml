@@ -33,10 +33,11 @@ jobs:
           SIGNATURE_HS512: ${{ secrets.SIGNATURE_HS512 }}
         run: python claim_check2.py
 
-      - name: Commit and push changes
+      - name: Upload
         run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add data.json
-          git commit -m "Auto-update data.json" || exit 0
+          cd $GITHUB_WORKSPACE
+          git config http.postBuffer 3221225472
+          git config --global user.email "ryankfortner@gmail.com"
+          git config --global user.name "ryanfortner"
+          bash -c "git add . && git commit -m 'Update data.json'" || true
           git push
