@@ -3,7 +3,7 @@ name: Update JSON Data
 on:
   # Run automatically every day at 8am UTC
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '*/15 * * * *'
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
