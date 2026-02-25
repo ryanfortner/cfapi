@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Rewards</title>
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --primary-text: #111827;
+            --secondary-text: #6b7280;
+            --accent-color: #2563eb;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-text);
+            margin-bottom: 40px;
+        }
+
+        /* Loading State */
+        #loading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+        }
+
+        /* Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        /* Card Styling */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            margin-bottom: 12px;
+        }
+
+        .scope-badge {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-text);
+            margin: 0 0 4px 0;
+        }
+
+        .item-name {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: var(--secondary-text);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .card-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+        }
+
+        .date-info {
+            font-weight: 500;
+        }
+
+        .uuid {
+            font-family: monospace;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Current Active Rewards</h1>
+    
+    <div id="loading">Loading offers...</div>
+    <div class="container" id="rewards-container"></div>
+
+    <script>
+        // --- CONFIGURATION ---
+        // Replace this with your actual URL. 
+        // If the file is in the same repo/folder, just use 'data.json'
+        const DATA_URL = 'data.json'; 
+
+        async function loadRewards() {
+            const container = document.getElementById('rewards-container');
+            const loading = document.getElementById('loading');
+
+            try {
+                const response = await fetch(DATA_URL);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+                
+                // Clear loading text
+                loading.style.display = 'none';
+
+                if (data.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; width:100%;">No active rewards found.</p>';
+                    return;
+                }
+
+                // Generate Cards
+                data.forEach(offer => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    
+                    // Sanitize/Formatting checks
+                    const title = offer.title || 'Untitled Offer';
+                    const scope = offer.scope || 'General';
+                    const item = offer.item || '';
+                    const context = offer.context || 'No details available.';
+                    const dateLabel = offer.date_label || 'Expires';
+                    const dateStr = offer.date_str || 'N/A';
+                    const uuid = offer.uuid || '';
+
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <span class="scope-badge">${scope}</span>
+                            <h2 class="card-title">${title}</h2>
+                            ${item ? `<div class="item-name">${item}</div>` : ''}
+                        </div>
+                        
+                        <div class="card-body">
+                            ${context}
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="date-info">
+                                ${dateLabel}: ${dateStr}
+                            </div>
+                            <div class="uuid" title="UUID: ${uuid}">${uuid.substring(0,8)}...</div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                loading.innerText = 'Error loading rewards. Please try again later.';
+                loading.style.color = 'red';
+            }
+        }
+
+        // Initialize
+        loadRewards();
+    </script>
+
+</body>
+</html>
