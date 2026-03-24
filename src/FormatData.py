@@ -118,8 +118,8 @@ def extract_public_geos(raw_dict):
             continue
             
         # Check if it's active (Key "8" == 1)
-        # if offer.get("8") != 1:
-        #     continue
+        if offer.get("8") != 1:
+            continue
             
         # If it passes the filters, extract only the safe fields
         safe_offer = {
