@@ -27,7 +27,7 @@ def get_subscribers():
         client = gspread.authorize(creds)
         
         # Open the sheet and grab the first tab
-        sheet = client.open_by_url(SHEET_URL).sheet1
+        sheet = client.open_by_url(SHEETS_URL).sheet1
         
         # Assuming Form timestamps are in Col 1 (A), and Emails are in Col 2 (B)
         emails = sheet.col_values(2)[1:] 
