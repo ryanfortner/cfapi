@@ -2,3 +2,5 @@ requests
 PyJWT
 blackboxprotobuf
 qrcode
+gspread
+google-auth

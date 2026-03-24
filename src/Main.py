@@ -5,6 +5,7 @@ import os
 import HeaderGenerator
 import ProtobufDecode
 import FormatData
+import Notifier
 import time
 
 from jwt import InsecureKeyLengthWarning
@@ -108,6 +109,17 @@ def main():
             else:
                 # Mark as newly seen
                 offer['timestamp'] = epoch_time
+
+                offer_name = offer.get('offerName', 'New Special Reward')
+                
+                # Format a quick expiration string for the email
+                exp = offer.get('expiresOnDate', {})
+                exp_text = f"{exp.get('year')}-{str(exp.get('month')).zfill(2)}-{str(exp.get('day')).zfill(2)}"
+                
+                # Call the Notifier
+                print(f"[*] New offer detected: {offer_name}. Triggering alerts...")
+                Notifier.send_alerts(offer_name, exp_text)
+                
             updated_offers.append(offer)
             
         # Reconstruct geodata to maintain any other top-level keys

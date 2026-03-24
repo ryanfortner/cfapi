@@ -1,5 +1,9 @@
 import os
 
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+GMAIL_USER = os.getenv("GMAIL_USER")
+SHEETS_URL = os.getenv("SHEETS_URL")
+
 # API endpoints
 TOKEN_URL = "https://login.my.chick-fil-a.com/as/token.oauth2"
 LOYALTY_URL = "https://d2c.api.my.chick-fil-a.com/cfa.d2c.frontend.loyalty.v1.LoyaltyService/GetLoyaltySummary"
