@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Does Raleigh Have Free Chick-fil-A?</title>
+    <title>Triangle Chicken Tracker</title>
     <style>
         :root {
             --cfa-red: #dd0031;
@@ -183,9 +183,9 @@
 <body>
 
     <div class="hero">
-        <h1>Does Raleigh get free Chick-fil-A today?</h1>
+        <h1>Does the Triangle get free Chick-fil-A?</h1>
         <div id="mainAnswer">...</div>
-        <div id="subMessage">Checking local area rewards...</div>
+        <div id="subMessage">Checking...</div>
     </div>
 
     <div id="offersContainer"></div>
@@ -217,11 +217,11 @@
             if (hasActiveRewards) {
                 answerEl.textContent = "YES";
                 answerEl.className = "answer-yes";
-                subMessageEl.textContent = "Open your app and claim these rewards before they expire!";
+                subMessageEl.textContent = "Open the app with location services enabled!";
             } else {
                 answerEl.textContent = "NO";
                 answerEl.className = "answer-no";
-                subMessageEl.textContent = customSubMessage || "No active local market rewards right now. Check back tomorrow!";
+                subMessageEl.textContent = customSubMessage || "No active market rewards right now. Check back later!";
             }
         }
 
@@ -254,7 +254,7 @@
             if (expiredOffers.length > 0) {
                 const expiredHeader = document.createElement("h2");
                 expiredHeader.className = "section-header";
-                expiredHeader.textContent = "Recently Expired Rewards";
+                expiredHeader.textContent = "Expired Rewards";
                 container.appendChild(expiredHeader);
 
                 renderOfferCards(expiredOffers, container);
