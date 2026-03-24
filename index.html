@@ -40,6 +40,37 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        
+        /* Subscribe Card */
+        .subscribe-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            border-top: 5px solid var(--cfa-red);
+        }
+
+        .subscribe-container h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--dark-gray);
+            font-size: 1.5em;
+        }
+
+        .subscribe-container p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .subscribe-iframe {
+            width: 100%;
+            height: 350px; /* You may need to tweak this depending on your form length */
+            border: none;
+        }
 
         /* The giant YES or NO */
         #mainAnswer {
@@ -301,5 +332,12 @@
             });
         }
     </script>
+
+    <div class="subscribe-container">
+        <h2>Never Miss a Free Sandwich</h2>
+        <p>Get an email the exact minute a new local reward drops in the Triangle.</p>
+        
+        <iframe class="subscribe-iframe" src="https://forms.gle/EGjc9Qf6ioa9Xv1A6" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
 </body>
 </html>
