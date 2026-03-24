@@ -81,7 +81,7 @@ def main():
 
         epoch_time = int(time.time())
 
-        compiled_filepath = "output/geodata-latest.json"
+        compiled_filepath = "../output/geodata-latest.json"
         
         # Safely get the offers list
         current_offers = geodata.get('offers', []) if isinstance(geodata, dict) else []
