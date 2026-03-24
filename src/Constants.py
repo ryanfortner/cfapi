@@ -3,7 +3,7 @@ import os
 # API endpoints
 TOKEN_URL = "https://login.my.chick-fil-a.com/as/token.oauth2"
 LOYALTY_URL = "https://d2c.api.my.chick-fil-a.com/cfa.d2c.frontend.loyalty.v1.LoyaltyService/GetLoyaltySummary"
-s
+
 # HS512 private keys used to generate JSON Web Tokens to simulate
 # a mobile operating system sending legitimate location headers.
 # Captured from the mobile app using a Frida hook.
