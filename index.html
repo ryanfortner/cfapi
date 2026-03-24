@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Does Raleigh Have Free Chick-fil-A?</title>
+    <style>
+        :root {
+            --cfa-red: #dd0031;
+            --dark-gray: #333;
+            --light-gray: #f4f4f4;
+            --success-green: #28a745;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background-color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--cfa-red);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: var(--dark-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* The giant YES or NO */
+        #mainAnswer {
+            font-size: 6em;
+            font-weight: 900;
+            margin: 20px 0;
+            line-height: 1;
+            color: #ccc; /* Default loading color */
+        }
+
+        .answer-yes { color: var(--success-green) !important; }
+        .answer-no { color: var(--cfa-red) !important; }
+
+        #subMessage {
+            font-size: 1.2em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Offers Grid */
+        #offersContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--success-green);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .offer-card.expired {
+            border-top: 5px solid var(--cfa-red);
+            background: #fafafa;
+            opacity: 0.7;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .active-badge {
+            background-color: #e6f4ea;
+            color: #1e8e3e;
+        }
+
+        .expired-badge {
+            background-color: #fce8e6;
+            color: var(--cfa-red);
+        }
+
+        .offer-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.4em;
+            padding-right: 70px;
+        }
+
+        .offer-card h4 {
+            margin: 0 0 15px 0;
+            color: #555;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .offer-card .subtitle {
+            font-size: 0.95em;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .image-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+            min-height: 120px;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 120px;
+            max-height: 120px;
+            object-fit: contain;
+        }
+
+        .expired .image-container img {
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
+        .meta {
+            font-size: 0.85em;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .meta p {
+            margin: 5px 0;
+        }
+
+        .section-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: #666;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Does Raleigh get free Chick-fil-A today?</h1>
+        <div id="mainAnswer">...</div>
+        <div id="subMessage">Checking local area rewards...</div>
+    </div>
+
+    <div id="offersContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('output/geodata-latest.json')
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.offers && data.offers.length > 0) {
+                        processAndDisplayOffers(data.offers);
+                    } else {
+                        setHeroStatus(false);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching geodata:', error);
+                    setHeroStatus(false, "We couldn't reach the servers to check. Try again later.");
+                });
+        });
+
+        function setHeroStatus(hasActiveRewards, customSubMessage = null) {
+            const answerEl = document.getElementById('mainAnswer');
+            const subMessageEl = document.getElementById('subMessage');
+
+            if (hasActiveRewards) {
+                answerEl.textContent = "YES";
+                answerEl.className = "answer-yes";
+                subMessageEl.textContent = "Open your app and claim these rewards before they expire!";
+            } else {
+                answerEl.textContent = "NO";
+                answerEl.className = "answer-no";
+                subMessageEl.textContent = customSubMessage || "No active local market rewards right now. Check back tomorrow!";
+            }
+        }
+
+        function processAndDisplayOffers(offers) {
+            const container = document.getElementById("offersContainer");
+            container.innerHTML = ""; 
+            
+            const today = new Date();
+
+            const processedOffers = offers.map(offer => {
+                const exp = offer.expiresOnDate;
+                const expDateObj = new Date(exp.year, exp.month - 1, exp.day, 23, 59, 59);
+                return { ...offer, expDateObj, isExpired: today > expDateObj };
+            });
+
+            const activeOffers = processedOffers.filter(o => !o.isExpired);
+            const expiredOffers = processedOffers.filter(o => o.isExpired);
+
+            const sortByDateAsc = (a, b) => a.expDateObj - b.expDateObj;
+            activeOffers.sort(sortByDateAsc);
+            expiredOffers.sort(sortByDateAsc);
+
+            // Update the giant YES/NO at the top of the page
+            setHeroStatus(activeOffers.length > 0);
+
+            if (activeOffers.length > 0) {
+                renderOfferCards(activeOffers, container);
+            }
+
+            if (expiredOffers.length > 0) {
+                const expiredHeader = document.createElement("h2");
+                expiredHeader.className = "section-header";
+                expiredHeader.textContent = "Recently Expired Rewards";
+                container.appendChild(expiredHeader);
+
+                renderOfferCards(expiredOffers, container);
+            }
+        }
+
+        function renderOfferCards(offersArray, container) {
+            offersArray.forEach(offer => {
+                let firstSeenText = "Unknown";
+                if (offer.timestamp) {
+                    const dateObj = new Date(offer.timestamp * 1000);
+                    firstSeenText = dateObj.toLocaleDateString() + ' at ' + dateObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                }
+
+                const card = document.createElement("div");
+                card.className = `offer-card ${offer.isExpired ? 'expired' : 'active'}`;
+
+                const badgeClass = offer.isExpired ? 'expired-badge' : 'active-badge';
+                const badgeText = offer.isExpired ? 'Expired' : 'Active';
+
+                let html = `<div class="status-badge ${badgeClass}">${badgeText}</div>`;
+                html += `<h3>${offer.offerName || 'Special Reward'}</h3>`;
+                html += `<h4>${offer.title || ''}</h4>`;
+                html += `<p class="subtitle">${offer.subTitle || ''}</p>`;
+                
+                html += `<div class="image-container">`;
+                if (offer.itemCategories && offer.itemCategories.length > 0) {
+                    offer.itemCategories.forEach(item => {
+                        if (item.imageUri) {
+                            html += `<img src="${item.imageUri}" alt="${item.name || 'Reward Item'}">`;
+                        }
+                    });
+                }
+                html += `</div>`;
+
+                const exp = offer.expiresOnDate;
+                html += `<div class="meta">`;
+                html += `<p><strong>Expires:</strong> ${exp.year}-${String(exp.month).padStart(2, '0')}-${String(exp.day).padStart(2, '0')}</p>`;
+                html += `<p><strong>Detected:</strong> ${firstSeenText}</p>`;
+                html += `</div>`;
+
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
