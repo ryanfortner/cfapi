@@ -64,11 +64,11 @@ def send_alerts(offer_name, expires_text):
 
     for email in emails:
         msg = MIMEMultipart()
-        msg['From'] = f"Raleigh CFA Alerts <{GMAIL_USER}>"
+        msg['From'] = f"Triangle Chick-fil-A Tracker <{GMAIL_USER}>"
         msg['To'] = email
-        msg['Subject'] = f"🚨 FREE Chick-fil-A Alert: {offer_name}!"
+        msg['Subject'] = f"Free Chick-fil-A: {offer_name}"
 
-        body = f"""Hey there!\n\nA new local reward has dropped in the area: {offer_name}\n\nOpen your Chick-fil-A app to claim it.\nIt expires on: {expires_text}\n\nEnjoy!"""
+        body = f"""Hello!\n\nA new reward has dropped in the RDU area: {offer_name}\n\nOpen your Chick-fil-A app with location services enabled to claim it.\nExpires on: {expires_text}\n\nEnjoy!"""
         msg.attach(MIMEText(body, 'plain'))
 
         try:
