@@ -1,3 +1,54 @@
 {
-    "offers": []
+    "offers": [
+        {
+            "offerName": "4 ct Chick-n-Minis\u2122",
+            "subTitle": "Rally and rise, Kings fans! Enjoy this offer on us. \ud83c\udfc0",
+            "title": "A Reward from Chick-fil-A Northern California",
+            "promotionId": "3fc6aea5-a8c5-41e5-99b8-d73561ae60ed",
+            "itemCategories": [
+                {
+                    "name": "4 ct Chick-fil-A Chick-n-Minis\u00ae",
+                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Breakfast/Menu%20Item/Edited_400x280/4ctMinis_mobile.webp",
+                    "itemTags": [
+                        "STC_CHICK_N_MINIS_4_COUNT",
+                        "CHICK_N_MINIS_4_COUNT"
+                    ]
+                }
+            ],
+            "expiresOnDate": {
+                "year": 2026,
+                "month": 4,
+                "day": 18
+            },
+            "timestamp": 1775579167
+        },
+        {
+            "offerName": "Strawberry Hibiscus Sunjoy\u00ae",
+            "subTitle": "Enjoy a Strawberry HIbiscus Sunjoy on us.",
+            "title": "Sip, sip, hooray!",
+            "promotionId": "ed993171-c62b-4ac9-b7e4-995e99894626",
+            "itemCategories": [
+                {
+                    "name": "Strawberry Hibiscus Sunjoy\u00ae",
+                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Beverages/Menu+Item/CFA_Spring26_Strawberry-Hibiscus-Sunjoy-On-whiteB_US_Digital-Ordering_iOS_Android_Web-Ordering_1x_400x280.webp",
+                    "itemTags": [
+                        "TG_STRAWHIBIS_SUNJOY_UNSWEETTEA_LEM_FS",
+                        "STRAWBERRY_HIBISCUS_SWEETTEA_LEM",
+                        "STRAWBERRY_HIBISCUS_SUNJOY_UNSWEET_TEA_LEMONADE",
+                        "STRAWBERRY_HIBISCUS_SUNJOY_DIET_LEMONADE_SWEET_TEA",
+                        "STRAWBERRY_HIBISCUS_SUNJOY_DIET_LEMONADE_UNSWEET_TEA",
+                        "TG_STRAWHIBIS_SWEETTEA_DIETLEM_FS",
+                        "TG_STRAWHIBIS_SUNJOY_SWEETTEA_LEM_FS",
+                        "TG_STRAWHIBIS_UNSWEETTEA_DIETLEM_FS"
+                    ]
+                }
+            ],
+            "expiresOnDate": {
+                "year": 2026,
+                "month": 4,
+                "day": 18
+            },
+            "timestamp": 1775579167
+        }
+    ]
 }
