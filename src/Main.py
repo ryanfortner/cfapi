@@ -49,7 +49,7 @@ def main():
         if (token_response.status_code != 200):
             print(f"[!] Failed to refresh token: {token_response.status_code}")
             print(token_response.text)
-            return
+            sys.exit(1)
         
         access_token = token_response.json().get("access_token")
         
