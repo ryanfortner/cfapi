@@ -20,7 +20,8 @@ def generate_location_header(lat, long):
     }
 
     token = jwt.encode(payload, LOCATION_HS512, algorithm="HS512")
-
+    print("Location Header:")
+    print(token)
     return token
 
 def generate_signature_header():
@@ -49,4 +50,6 @@ def generate_signature_header():
     
     # Sign the token using HS512
     token = jwt.encode(payload, SIGNATURE_HS512, algorithm="HS512")
+    print("Signature Header:")
+    print(token)
     return token
