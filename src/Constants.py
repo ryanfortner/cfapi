@@ -36,8 +36,8 @@ USER_AGENT = "v2026.3.0, Android 16"
 # This does not change with different accounts as of writing.
 PUSH_REGISTRATION_ID = os.getenv("PUSH_REGISTRATION_ID")
 
-# This is either MobileV2 for mobile tokens, or PWO for web app tokens
-CLIENT_ID = "MobileV2"
+# This is either MobileAppV2 for mobile tokens, or PWO for web app tokens
+CLIENT_ID = "MobileAppV2"
 
 # The following are used to generate the signature header by mimicking an Android device
 # You probably don't need to change any of this
