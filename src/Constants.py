@@ -19,7 +19,8 @@ SIGNATURE_HS512 = os.getenv("SIGNATURE_HS512")
 # unless you're trying to get your account banned.
 # Format: list of lists, ["Location Label", latitudeDecimalDegrees, longitudeDecimalDegrees]
 TARGET_COORDS = [
-    ["Greater Triangle Area (Raleigh/Durham/Chapel Hill)", 35.7904, -78.6586]
+    #["Greater Triangle Area (Raleigh/Durham/Chapel Hill)", 35.7904, -78.6586]
+    ["Northern California", 38.575764, -121.478851]
 ]
 
 # OAuth2 tokens, captured from intercepted network requests
