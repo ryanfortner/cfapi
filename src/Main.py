@@ -7,6 +7,7 @@ import ProtobufDecode
 import FormatData
 import Notifier
 import time
+import sys
 
 from jwt import InsecureKeyLengthWarning
 from Constants import *
@@ -135,6 +136,7 @@ def main():
     else:
         print(f"[!] Request failed with status: {response.status_code}")
         print(response.text)
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
