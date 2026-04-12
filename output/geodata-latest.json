@@ -1,41 +1,6 @@
 {
     "offers": [
         {
-            "offerName": "Your choice of select breakfast entr\u00e9e",
-            "subTitle": "Rise and dine Arizona! Enjoy a breakfast item on us this week!",
-            "title": "A Reward from Chick-fil-A Phoenix and Northern AZ ",
-            "promotionId": "a9f8cf15-2dd4-40e2-89fd-9e7e3df370c3",
-            "itemCategories": [
-                {
-                    "name": "Chick-fil-A\u00ae Chicken Biscuit",
-                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Breakfast/Menu%20Item/Edited_400x280/ChickenBiscuit_mobile.webp",
-                    "itemTags": [
-                        "BISCUIT_CHICKEN"
-                    ]
-                },
-                {
-                    "name": "Spicy Chicken Biscuit",
-                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Breakfast/Parent/SpicyChickenBiscuit_mobile.webp",
-                    "itemTags": [
-                        "BISCUIT_SPICY_CHICKEN"
-                    ]
-                },
-                {
-                    "name": "4 ct Chick-fil-A Chick-n-Minis\u00ae",
-                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Breakfast/Menu%20Item/Edited_400x280/4ctMinis_mobile.webp",
-                    "itemTags": [
-                        "CHICK_N_MINIS_4_COUNT"
-                    ]
-                }
-            ],
-            "expiresOnDate": {
-                "year": 2026,
-                "month": 4,
-                "day": 11
-            },
-            "timestamp": 1775694035
-        },
-        {
             "offerName": "4 ct Chick-n-Minis\u2122",
             "subTitle": "Rally and rise, Kings fans! Enjoy this offer on us. \ud83c\udfc0",
             "title": "A Reward from Chick-fil-A Northern California",
