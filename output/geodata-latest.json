@@ -1,6 +1,56 @@
 {
     "offers": [
         {
+            "offerName": "8 ct Chick-fil-A\u00ae Nuggets",
+            "subTitle": "Enjoy this reward from Chick-fil-A South Florida. Let\u2019s go MIAMI HEAT!",
+            "title": "Heat Foul Shot! Visiting team missed 2 = you score!",
+            "promotionId": "fc72f184-c6f8-4a31-a6ab-e61f20f68c8c",
+            "itemCategories": [
+                {
+                    "name": "8 ct Chick-fil-A\u00ae Nuggets",
+                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Entrees/Menu%20Item/8_breaded_nuggets.webp",
+                    "itemTags": [
+                        "STC_NUGGETS_CFA_8_CT",
+                        "NUGGETS_CFA_8_COUNT"
+                    ]
+                }
+            ],
+            "expiresOnDate": {
+                "year": 2026,
+                "month": 4,
+                "day": 15
+            },
+            "timestamp": 1776081389
+        },
+        {
+            "offerName": "2 ct Chick-fil-A Chick-n-Strips\u00ae or 5 ct Chick-fil-A\u00ae Nuggets",
+            "subTitle": "Enjoy this reward, on us!",
+            "title": "A Reward from St. Louis",
+            "promotionId": "b98c65d3-1563-4386-a8a6-a77172d5869c",
+            "itemCategories": [
+                {
+                    "name": "2 ct Chick-fil-A Chick-n-Strips\u00ae",
+                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Entrees/Menu%20Item/2_strips.webp",
+                    "itemTags": [
+                        "CHICK_N_STRIPS_2_COUNT"
+                    ]
+                },
+                {
+                    "name": "5 ct Chick-fil-A\u00ae Nuggets",
+                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Entrees/Menu%20Item/Dec2019_CFANuggets_5ct_mobile.webp",
+                    "itemTags": [
+                        "5CT_NUGGETS"
+                    ]
+                }
+            ],
+            "expiresOnDate": {
+                "year": 2026,
+                "month": 4,
+                "day": 17
+            },
+            "timestamp": 1776081389
+        },
+        {
             "offerName": "4 ct Chick-n-Minis\u2122",
             "subTitle": "Rally and rise, Kings fans! Enjoy this offer on us. \ud83c\udfc0",
             "title": "A Reward from Chick-fil-A Northern California",
