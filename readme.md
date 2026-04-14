@@ -2,6 +2,8 @@
 
 Reverse-engineering the Chick-fil-A rewards system.
 
+You can either read this writeup, or skip right to the end result, [Triangle Chick-fil-A Tracker](https://tct.rfort.net), where you can sign up for emails of new free offers in the RDU area. This is a two-part system, a periodic script run on a personal computer, and a GitHub Action that refreshes the results and pushes the website.
+
 Note: much of this is redacted (albeit pretty poorly). Anything that's redacted but not mentioned is not important from the context of this writeup.
 
 ## Why?
