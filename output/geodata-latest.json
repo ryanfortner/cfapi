@@ -1,3 +1,34 @@
 {
-    "offers": []
+    "offers": [
+        {
+            "offerName": "Chick-fil-A\u00ae Chicken Sandwich or Chick-fil-A\u00ae Chicken Biscuit",
+            "subTitle": "Canes Win! Enjoy a free Chick-fil-A Chicken Biscuit or Sandwich tomorrow, on us!",
+            "title": "A Reward from Greater Triangle Area",
+            "promotionId": "69faeb9e-1dcd-416f-9215-65063c6c9913",
+            "itemCategories": [
+                {
+                    "name": "Chick-fil-A\u00ae Chicken Biscuit",
+                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Breakfast/Menu%20Item/Edited_400x280/ChickenBiscuit_mobile.webp",
+                    "itemTags": [
+                        "BISCUIT_CHICKEN",
+                        "STC_SANDWICH_CFA_CHICKEN",
+                        "STC_BISCUIT_CHICKEN"
+                    ]
+                },
+                {
+                    "name": "Chick-fil-A\u00ae Chicken Sandwich",
+                    "imageUri": "https://www.cfacdn.com/img/order/menu/Mobile/Entrees/Parent/Classic_Sandwich.webp",
+                    "itemTags": [
+                        "SANDWICH_CFA_CHICKEN"
+                    ]
+                }
+            ],
+            "expiresOnDate": {
+                "year": 2026,
+                "month": 4,
+                "day": 21
+            },
+            "timestamp": 1776741613
+        }
+    ]
 }
