@@ -10,11 +10,11 @@ Note: much of this is redacted (albeit pretty poorly). Anything that's redacted 
 
 I like free food, probably more so than most other people, so much so that in my free time I find ways to get more free food. Not the best for my health, but if it’s free, you have to like it, right? 
 
-Unlike most fast food restaurants, Chick-fil-A’s reward system is simple in the sense that all the “rewards” they give out are simple freebies. Not discounted items or BOGO deals, just **free items**. Their point system is similar to other restaurants, with a mediocre point conversion at best, but that’s besides the point. Having taken advantage of these free items in past years, I wanted an automated system to check for and claim any free rewards from sports games in my area or national promotional offers.
+Unlike most fast food restaurants, Chick-fil-A’s reward system is simple in the sense that all the “rewards” they give out are simple freebies. Not discounted items or BOGO deals, just **free items**. Their point system is similar to other restaurants, with a mediocre point conversion at best, but that’s besides the point, no pun intended. Having taken advantage of these free items in past years, I wanted an automated system to check for and claim any free rewards from sports games in my area or national promotional offers.
 
 ## Background Information
 
-Most Chick-fil-A rewards come in the form of regional (“market”) offers. Something in their mobile app registers your GPS location, compares it in some geofencing algorithm, and checks for an offer in a specific market. While conceptually it’s pretty easy to understand, there is barely any information I could find on how this actually works on a lower level (and obviously they have no public API). So I recruited one of our friendly LLMs to do some deep research on how it actually works.
+Most Chick-fil-A rewards come in the form of regional (“market”) offers. Something in their mobile app registers your GPS location, compares it in some geofencing algorithm, and checks for an offer in a specific market. While conceptually it’s pretty easy to understand, there is barely any information I could find on how this actually works on a lower level (and obviously they have no public API). So I dove into its network request structure using references and deep research in conjunction with one of our friendly neighborhood LLMs.
 
 The fundamental unit of a reward in Chick-fil-A’s system is called a Digital Offer Card (DOC). You may have seen or used an actual Offer Card (they say “Be Our Guest” on the front, typically), these are just the digital versions of those. Restaurant owners/operators can digitally push these to customers, and apparently there’s considerable autonomy on that front. Additionally, operators can pool rewards, such as all operators from the Atlanta area for example, and run market-wide regional rewards. Important to note that the offer cards are paid for by the operators - they’re not just coupons, and it does result in a loss.
 
@@ -24,7 +24,7 @@ Something else I found interesting is that *allegedly* each restaurant has a Kub
 
 So, once again this is my first attempt at reverse engineering anything at all. I know that Chick-fil-A has some sort of API that checks for geolocated rewards as soon as you open the app. I also knew from prior knowledge (from being hardware banned from the app at one point) that their security policy is no joke, and they take zero chances when it comes to users signing up and claiming these rewards. They will not hesitate to shadow ban accounts at any moment. 
 
-My initial approach was to use an Android emulator to sign in, while capturing requests through a man-in-the-middle proxy. That was a bit of a hassle to set up, but I got it working… after I managed to get my public IP banned from logging in. Like I said… no joke security policy, too many failed sign-ins and they’ll just ban the IP.
+My initial approach was to use an Android emulator to sign in, while capturing requests through a man-in-the-middle proxy. That was a bit of a hassle to set up, but I got it working… after I managed to get my public IP banned from logging in. Like I said… no joke security policy, too many failed sign-ins and they’ll just ban IPs, no rate limit warning.
 
 ### token.oauth2 API Request
 
@@ -349,7 +349,7 @@ Here's an example of me testing `claim_check.py`. It assembles a chain of reques
 
 This section aims to highlight something I encountered while capturing network requests. Chick-fil-A collects an absurd amount of data through their app, like so much data that I thought I was analyzing my banking app by accident. We’re talking EVERY metric an Android app is even allowed to access. Screen size (pixel density???), serial number, how the app was installed, even widgets. Is that really necessary for a fast-food app? Even for security reasons, I think not…
 
-I briefly considered reproducing said metrics here but, a. the list would be insanely long and b. I don't want to go through the redaction trouble.
+I briefly considered reproducing said metrics here but, a. the list would be insanely long and b. I don't want to go through the redaction trouble. If nothing else, what you should take away from this note is that there's always a catch to rewards programs like this; companies will profit by any means necessary and will go to extensive and impressively creative lengths to do so. Have an idea of what you truly want secured from the digital world before you even touch a connected device - at least having that privacy-focused mindset is the first step.
 
 ## References
 
